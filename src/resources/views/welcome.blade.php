@@ -80,7 +80,7 @@
             </div>
         </nav>
 
-        <div class="flex-center position-ref full-height blue-grey darken-3">
+        <div class="flex-center position-ref full-height blue-grey darken-4">
             
             
           
@@ -99,11 +99,11 @@
             @endif
 
             <div class="row">
-                <form class="col" action="{{ route('summoner.index') }}" method="GET">
+                <form class="col" action="{{ route('summoner.create') }}" method="GET">
                     <div class="input-field col">
                         <input name="name" id="name" type="tel" class="validate cyan-text text-lighten-5">
                         <label for="name">Summoner Name</label>
-                        <button type="submit" class="btn">Search</button>
+                        <button type="submit" class="btn flex-center">Search</button>
                     </div>
                 </form>
             </div>

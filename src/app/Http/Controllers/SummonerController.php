@@ -12,8 +12,20 @@ class SummonerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $summoner)
+    public function index()
     {      
+        $summoner = Summoner::all();
+        return view('summoners.index', compact('summoner'));
+
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
         $name = $_GET['name'];
 
         $opts = array('https' =>
@@ -33,19 +45,16 @@ class SummonerController extends Controller
         $result = file_get_contents("https://br1.api.riotgames.com/lol/summoner/v4/summoners/by-name/".$name."?api_key=RGAPI-b10ab7a0-eeac-409c-9a36-ed59b9cd817b", false, $context);
         
         $responseData = json_decode($result, true);
-        
-        // Summoner::post('Summoner.store', $responseData);
-        var_dump($responseData);
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return view('summoners.create', [ 
+            'name' => $responseData['name'],
+            'puuid' => $responseData['puuid'], 
+            'summonerLevel' => $responseData['summonerLevel'], 
+            'revisionDate' => $responseData['revisionDate'], 
+            'idapi' => $responseData['id'], 
+            'accountId' => $responseData['accountId'], 
+            'profileIconId' => $responseData['profileIconId']
+        ] );
     }
 
     /**
@@ -62,7 +71,7 @@ class SummonerController extends Controller
             'puuid' => $request['puuid'], 
             'summonerLevel' => $request['summonerLevel'], 
             'revisionDate' => $request['revisionDate'], 
-            'idapi' => $request['id'], 
+            'idapi' => $request['idapi'], 
             'accountId' => $request['accountId'], 
             'profileIconId' => $request['profileIconId']
         );
@@ -111,6 +120,9 @@ class SummonerController extends Controller
      */
     public function destroy(Summoner $summoner)
     {
-        //
+        $summoner = Summoner::findOrFail($summoner->id);
+        $summoner->delete();
+
+        return redirect(route('summoner.index'))->with('success', 'summoner is successfully deleted');
     }
 }
