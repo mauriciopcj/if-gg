@@ -9,6 +9,10 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
+        <!-- materialize -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
         <!-- Styles -->
         <style>
             html, body {
@@ -64,7 +68,22 @@
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
+        
+        <nav style="padding:0 10px" class="cyan darken-3">
+            <div class="nav-wrapper">
+                <a href="#" class="brand-logo">IF GG</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="sass.html">Link 1</a></li>
+                    <li><a href="badges.html">Link 2</a></li>
+                    <li><a href="collapsible.html">Link 3</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="flex-center position-ref full-height blue-grey darken-3">
+            
+            
+          
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
@@ -79,22 +98,44 @@
                 </div>
             @endif
 
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
+            <div class="row">
+                <form class="col" action="{{ route('summoner.index') }}" method="GET">
+                    <div class="input-field col">
+                        <input name="name" id="name" type="tel" class="validate cyan-text text-lighten-5">
+                        <label for="name">Summoner Name</label>
+                        <button type="submit" class="btn">Search</button>
+                    </div>
+                </form>
+            </div>
+            
+        </div>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+        <footer class="page-footer cyan darken-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col l8 s12">
+                        <h5 class="white-text">Important warning!</h5>
+                        <p class="grey-text text-lighten-4">IF-GG isn’t endorsed by Riot Games and doesn’t reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc.</p>
+                    </div>
+                    <div class="col l2 offset-l2 s12">
+                        <h5 class="white-text">Links</h5>
+                        <ul>
+                            <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                            <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                            <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
+            <div class="footer-copyright">
+                <div class="container">
+                © 2019 Mauricio P.C. Junior & Romero C.R. Junior
+                </div>
+            </div>
+        </footer>
+
+        <!-- scripts -->
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     </body>
 </html>
