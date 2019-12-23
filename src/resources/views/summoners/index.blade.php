@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'Alumnus')
+@section('title', 'Summoners')
 
 @section('content')
 @if(session()->get('success'))
@@ -11,43 +11,35 @@
   </button>
 </div><br />
 @endif
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <td>id</td>
-      <td>name</td>
-      <td>puuid</td>
-      <td>summonerLevel</td>
-      <td>revisionDate</td>
-      <td>idapi</td>
-      <td>accountId</td>
-      <td>profileIconId</td>
-      <td colspan="2">Action</td>
-    </tr>
-  </thead>
-  <tbody>
-    @foreach($summoner as $summ)
-    <tr> 
-      <td>{{$summ->id}}</td>
-      <td>{{$summ->name}}</td>
-      <td>{{$summ->puuid}}</td>
-      <td>{{$summ->summonerLevel}}</td>
-      <td>{{$summ->revisionDate}}</td>
-      <td>{{$summ->idapi}}</td>
-      <td>{{$summ->accountId}}</td>
-      <td>{{$summ->profileIconId}}</td>
-      <td><a href="{{ route('summoner.edit', $summ->id) }}" class="btn btn-primary" role="button">Edit</a></td>
-      <td>
-        <form action="{{ route('summoner.destroy', $summ->id)}}" method="post">
-          @csrf
-          @method('DELETE')
-          <button class="btn btn-danger" type="submit">Delete</button>
-        </form>
-      </td>
-    </tr>
-    @endforeach
-  </tbody>
-</table>
+
+<div class="row row-cols-12">
+  @foreach($summoner as $summ)
+  <div class="col-6 col-sm-4 col-md-2">
+    <div class="card h-100">
+      <img src="http://ddragon.leagueoflegends.com/cdn/9.24.2/img/profileicon/{{ $summ->profileIconId }}.png" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{ $summ->name }}</h5>
+        <p class="card-text">
+          <td>{{$summ->summonerLevel}}</td><hr>
+          <!-- <td>{{$summ->puuid}}</td><hr>
+          <td>{{$summ->revisionDate}}</td><hr>
+          <td>{{$summ->idapi}}</td><hr>
+          <td>{{$summ->accountId}}</td><hr>
+          <td>{{$summ->profileIconId}}</td><hr> -->
+          <td><a href="{{ route('summoner.edit', $summ->id) }}" class="btn btn-primary" role="button">Edit</a>
+          <form action="{{ route('summoner.destroy', $summ->id)}}" method="post">
+            @csrf
+            @method('DELETE')
+            <button class="btn btn-danger" type="submit">Delete</button>
+          </form>
+          </td>
+        </p>
+      </div>
+    </div>
+  </div>
+  @endforeach 
+</div>
+    
 <a href="{{ route('summoner.create') }}" class="btn btn-primary" role="button">Add Summmoner</a>
 @endsection
 

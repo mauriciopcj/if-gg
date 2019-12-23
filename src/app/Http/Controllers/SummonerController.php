@@ -26,7 +26,7 @@ class SummonerController extends Controller
      */
     public function create()
     {
-        $name = $_GET['name'];
+        $name = str_replace(' ','%20',$_GET['name']);
 
         $opts = array('https' =>
             array(
