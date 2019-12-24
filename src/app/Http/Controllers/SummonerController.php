@@ -42,7 +42,7 @@ class SummonerController extends Controller
         
         $context = stream_context_create($opts);
         
-        $result = file_get_contents("https://br1.api.riotgames.com/lol/summoner/v4/summoners/by-name/".$name."?api_key=RGAPI-b10ab7a0-eeac-409c-9a36-ed59b9cd817b", false, $context);
+        $result = file_get_contents("https://br1.api.riotgames.com/lol/summoner/v4/summoners/by-name/".$name."?api_key=RGAPI-5b59cc6f-93d2-4f13-a97c-a57e4d94e771", false, $context);
         
         $responseData = json_decode($result, true);
 

@@ -12,21 +12,19 @@
 </div><br />
 @endif
 
-<div class="row row-cols-12">
+<div class="col-12 col-md-6">
   @foreach($summoner as $summ)
-  <div class="col-6 col-sm-4 col-md-2">
-    <div class="card h-100">
-      <img src="http://ddragon.leagueoflegends.com/cdn/9.24.2/img/profileicon/{{ $summ->profileIconId }}.png" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">{{ $summ->name }}</h5>
-        <p class="card-text">
-          <td>{{$summ->summonerLevel}}</td><hr>
+  <div>
+    <div class="d-flex flex-row m-4 justify-content-between">
+      <img src="http://ddragon.leagueoflegends.com/cdn/9.24.2/img/profileicon/{{ $summ->profileIconId }}.png" >
+      <div class="ml-2">
+        <h4>{{ $summ->name }}</h4>
+        <p>
+          Level: {{$summ->summonerLevel}}<hr>
+          Revision Date:<br>{{ date("d/m/Y H:i:s", ($summ->revisionDate / 1000) ) }}<hr>
           <!-- <td>{{$summ->puuid}}</td><hr>
-          <td>{{$summ->revisionDate}}</td><hr>
           <td>{{$summ->idapi}}</td><hr>
-          <td>{{$summ->accountId}}</td><hr>
-          <td>{{$summ->profileIconId}}</td><hr> -->
-          <td><a href="{{ route('summoner.edit', $summ->id) }}" class="btn btn-primary" role="button">Edit</a>
+          <td>{{$summ->accountId}}</td><hr> -->
           <form action="{{ route('summoner.destroy', $summ->id)}}" method="post">
             @csrf
             @method('DELETE')
