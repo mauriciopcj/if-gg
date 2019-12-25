@@ -14,7 +14,8 @@ class MatchsController extends Controller
      */
     public function index()
     {
-        //
+        $match = Match::all();
+        return view('matchs.index', compact('match'));
     }
 
     /**

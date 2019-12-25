@@ -12,5 +12,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(SummonerTableSeeder::class);
+        $this->call(MatchsTableSeeder::class);
     }
 }

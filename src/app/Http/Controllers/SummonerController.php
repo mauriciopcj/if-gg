@@ -76,6 +76,8 @@ class SummonerController extends Controller
             'profileIconId' => $request['profileIconId']
         );
         Summoner::create($dadosCorretos);
+
+        return redirect(route('summoner.index'));
     }
 
     /**

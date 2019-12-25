@@ -1,6 +1,5 @@
-<!doctype html>
-<html lang="en">
-
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -13,12 +12,40 @@
 </head>
 
 <body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-2">
+    <a class="navbar-brand" href="http://localhost:8080">IF GG</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item"><a  class="nav-link" href="{{ route('summoner.index') }}">Summoners</a></li>
+        <li class="nav-item"><a  class="nav-link" href="{{ route('match.index') }}">Matchs</a></li>
+      </ul>
+    </div>
+  </nav>
   <div class="container">
     <h1 class="text-center my-5">@yield('title')</h1>
-    <div class="mt-4">
+    <div class="mt-4 mb-4">
       @yield('content')
     </div>
   </div>
+
+  <footer class="bg-dark text-white">
+    <div class="container p-3">
+      <div class="row">
+        <div class="col">
+          <h5 class="">Important warning!</h5>
+          <p class="">IF-GG isn’t endorsed by Riot Games and doesn’t reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc.</p>
+        </div>
+      </div>
+    </div>
+    <div class="border-top border-light p-3 text-center">
+      <div class="container">
+        © 2019 Mauricio P.C. Junior & Romero C.R. Junior
+      </div>
+    </div>
+  </footer>
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
