@@ -32,4 +32,9 @@ class Match extends Model
     {
         return $this->belongsTo('App\Champion','champion_id');
     }
+
+    public function details()
+    {
+        return $this->belongsTo('App\MatchDetails','gameId');
+    }
 }

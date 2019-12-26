@@ -1,16 +1,36 @@
-## Informações sobre a estrutura do projeto
+# Project Structure
 
-# Entidades
+## Entitys
 
-Summoner
+* Summoner
+* Champion
+* Match
+* MatchDetail
+* Participants
 
-Champion
+attribute          | description
+--------------------------------
+participantId      |
+match_detail_id    |
+spell1Id           |
+lane               |
+spell2Id           |
+largestMultiKill   |
+kills              |
+assists            |
+deaths             |
+goldEarned         |
+champLevel         |
+championId         |
 
-Match
+## Relationship
 
-# Relacionamentos
+### OneToOne
 
-OneToMany
+Match >> MatchDetail
 
-Sumoner and Match
-Champion and Match
+### OneToMany
+
+Sumoner >> Match
+Champion >> Match
+MatchDetail >> Participants
