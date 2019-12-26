@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSummonerTable extends Migration
+class CreateChampionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,15 @@ class CreateSummonerTable extends Migration
      */
     public function up()
     {
-        Schema::create('summoners', function (Blueprint $table) {
+        Schema::create('champions', function (Blueprint $table) {
             
             $table->string('id');
             $table->primary('id');
 
             $table->string('name');
-            $table->string('puuid');
-            $table->bigInteger('summonerLevel');
-            $table->bigInteger('revisionDate');
-            $table->string('accountId');
-            $table->integer('profileIconId');
+            $table->string('title');
+            $table->string('img_screen');
+            $table->string('img_square');
             $table->timestamps();
         });
     }
@@ -35,6 +33,6 @@ class CreateSummonerTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('summoners');
+        Schema::dropIfExists('champions');
     }
 }

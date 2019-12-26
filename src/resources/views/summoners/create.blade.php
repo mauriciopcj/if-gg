@@ -39,8 +39,8 @@
         <input type="text" class="form-control" id="accountId" name="accountId" value="{{ $accountId }}"/>
       </div>
       <div class="form-group">
-        <label for="idapi">idapi:</label>
-        <input type="text" class="form-control" id="idapi" name="idapi" value="{{ $idapi }}"/>
+        <label for="id">id:</label>
+        <input type="text" class="form-control" id="id" name="id" value="{{ $id }}"/>
       </div>
       <div class="form-group">
         <label for="revisionDate">revisionDate:</label>

@@ -13,13 +13,13 @@ class SummonerTableSeeder extends Seeder
     public function run()
     {
         $summoner = new Summoner;
-        $summoner->profileIconId = 14;
-        $summoner->name = "Boca de Fossa";
-        $summoner->puuid = "8fZtclFk8JnZdvzxnReFkQraLEmOT9b_T6jJNLzY4Zl00LDQulFqKJ2SU3r_Dz5bGHALTK8t2F1Sow";
-        $summoner->summonerLevel = 140;
-        $summoner->accountId = "mwAwq1lx_0yyOJ8JLEOKQgMZAkdzR_HUF7LpBM99PtjuYkI";
-        $summoner->idapi = "TzFfMgC7gDTyxtAS-t-TL1Z91qw2TV9TtzHt7SkSrq4VQFo";
-        $summoner->revisionDate = 1575737118000;
+        $summoner->profileIconId = 658;
+        $summoner->name = "Lanolder";
+        $summoner->puuid = "T_Y_ciC88rpuQSwLRH-IfKe1u-zKU5LWmnkGQqscgIfQhCkf4xb0K7OaYMuzwMtdeJX6LLzbGYBcvA";
+        $summoner->summonerLevel = 64;
+        $summoner->accountId = "1mSmyj4J_Oi8yM6EtHxzGzImu8LuO97GAZ6UuTHi5EVp";
+        $summoner->id = "t1zgW2FvDn95vE8C5w7HsVysqNUFAYTHzPypzLtZLXs1SA";
+        $summoner->revisionDate = 1575205563000;
         $summoner->save();
     }
 }

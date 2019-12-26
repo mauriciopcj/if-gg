@@ -6,15 +6,30 @@ use Illuminate\Database\Eloquent\Model;
 
 class Match extends Model
 {
+    protected $primaryKey = 'gameId';
+    public $incrementing = false;
+
     protected $fillable = [
-        'accountId',
-        'lane',
         'gameId',
-        'champion',
+        'lane',
+        'champion_id',
         'platformId',
         'timestamp',
         'queue',
         'role',
-        'season' 
+        'season',
+        'summoner_id'
     ];
+
+    protected $table = 'matches';
+
+    public function summoner()
+    {
+        return $this->belongsTo('App\Summoner','summoner_id');
+    }
+
+    public function champion()
+    {
+        return $this->belongsTo('App\Champion','champion_id');
+    }
 }

@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Match;
+use App\Champion;
 
-class MatchsTableSeeder extends Seeder
+class ChampionTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -26,22 +26,18 @@ class MatchsTableSeeder extends Seeder
         
         $context = stream_context_create($opts);
         
-        $result = file_get_contents("https://br1.api.riotgames.com/lol/match/v4/matchlists/by-account/1mSmyj4J_Oi8yM6EtHxzGzImu8LuO97GAZ6UuTHi5EVp?api_key=RGAPI-4cbe07fd-2ad6-476f-9628-4a4853beddbd", false, $context);
+        $result = file_get_contents("http://ddragon.leagueoflegends.com/cdn/9.24.2/data/pt_BR/champion.json", false, $context);
         
         $responseData = json_decode($result, true);
 
-        foreach($responseData['matches'] as $ma){
-            $match = new Match;
-            $match->lane = $ma['lane'];
-            $match->gameId = $ma['gameId'];
-            $match->champion_id = $ma['champion'];
-            $match->platformId = $ma['platformId'];
-            $match->timestamp = $ma['timestamp'];
-            $match->queue = $ma['queue'];
-            $match->role = $ma['role'];
-            $match->season = $ma['season'];
-            $match->summoner_id = "t1zgW2FvDn95vE8C5w7HsVysqNUFAYTHzPypzLtZLXs1SA";
-            $match->save();
+        foreach($responseData['data'] as $cha){
+            $champion = new Champion;
+            $champion->id = $cha['key'];
+            $champion->name = $cha['name'];
+            $champion->title = $cha['title'];
+            $champion->img_screen = "http://ddragon.leagueoflegends.com/cdn/img/champion/loading/".$cha['name']."_0.jpg";
+            $champion->img_square = "http://ddragon.leagueoflegends.com/cdn/9.24.2/img/champion/".$cha['name'].".png";
+            $champion->save();
         }
         
     }

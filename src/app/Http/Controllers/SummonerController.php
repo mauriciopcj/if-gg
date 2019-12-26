@@ -34,7 +34,7 @@ class SummonerController extends Controller
                 'header'  => array(
                     "Origin" => "https://developer.riotgames.com",
                     "Accept-Charset" => "application/x-www-form-urlencoded; charset=UTF-8",
-                    "X-Riot-Token" => "RGAPI-b10ab7a0-eeac-409c-9a36-ed59b9cd817b",
+                    "X-Riot-Token" => "RGAPI-4cbe07fd-2ad6-476f-9628-4a4853beddbd",
                     "Accept-Language" => "pt-BR,pt;q=0.8,en-US;q=0.5,en;q=0.3",
                     "User-Agent" => "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:71.0) Gecko/20100101 Firefox/71.0")
             )
@@ -42,7 +42,7 @@ class SummonerController extends Controller
         
         $context = stream_context_create($opts);
         
-        $result = file_get_contents("https://br1.api.riotgames.com/lol/summoner/v4/summoners/by-name/".$name."?api_key=RGAPI-5b59cc6f-93d2-4f13-a97c-a57e4d94e771", false, $context);
+        $result = file_get_contents("https://br1.api.riotgames.com/lol/summoner/v4/summoners/by-name/".$name."?api_key=RGAPI-4cbe07fd-2ad6-476f-9628-4a4853beddbd", false, $context);
         
         $responseData = json_decode($result, true);
 
@@ -51,7 +51,7 @@ class SummonerController extends Controller
             'puuid' => $responseData['puuid'], 
             'summonerLevel' => $responseData['summonerLevel'], 
             'revisionDate' => $responseData['revisionDate'], 
-            'idapi' => $responseData['id'], 
+            'id' => $responseData['id'], 
             'accountId' => $responseData['accountId'], 
             'profileIconId' => $responseData['profileIconId']
         ] );
@@ -67,11 +67,11 @@ class SummonerController extends Controller
     {
         //
         $dadosCorretos = array(
+            'id' => $request['id'],
             'name' => $request['name'], 
             'puuid' => $request['puuid'], 
             'summonerLevel' => $request['summonerLevel'], 
-            'revisionDate' => $request['revisionDate'], 
-            'idapi' => $request['idapi'], 
+            'revisionDate' => $request['revisionDate'],
             'accountId' => $request['accountId'], 
             'profileIconId' => $request['profileIconId']
         );

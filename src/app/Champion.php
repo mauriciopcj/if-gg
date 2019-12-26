@@ -3,9 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Match;
 
-class Summoner extends Model
+class Champion extends Model
 {
     protected $primaryKey = 'id';
     public $incrementing = false;
@@ -13,16 +12,14 @@ class Summoner extends Model
 
     protected $fillable = [
         'id',
-        'name', 
-        'puuid', 
-        'summonerLevel', 
-        'revisionDate',
-        'accountId', 
-        'profileIconId'  
+        'name',
+        'title',
+        'img_screen',
+        'img_square'
     ];
 
     public function matchs()
     {
-        return $this->hasMany('App\Match','summoner_id');
+        return $this->hasMany('App\Match','champion_id');
     }
 }

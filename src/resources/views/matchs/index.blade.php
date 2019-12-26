@@ -15,7 +15,7 @@
 <div class="container">
   <div class="row row-cols-12">
   @foreach($match as $m)
-    <div class="col-12">AccountId: {{ $m->accountId }}</div>
+    <div class="col-12">Summoner: {{ $m->summoner }}</div>
     <div class="col-12">Lane: {{ $m->lane }}</div>
     <div class="col-12">GameId: {{ $m->gameId }}</div>
     <div class="col-12">Champion: {{ $m->champion }}</div>
