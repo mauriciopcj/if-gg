@@ -15,17 +15,21 @@
 <div class="container">
   <div class="row row-cols-12">
   @foreach($match as $m)
-    <div class="col-12">Summoner: {{ $m->summoner }}</div>
-    <div class="col-12">Lane: {{ $m->lane }}</div>
-    <div class="col-12">GameId: {{ $m->gameId }}</div>
-    <div class="col-12">Champion: {{ $m->champion }}</div>
-    <div class="col-12">PlatformId: {{ $m->platformId }}</div>
-    <div class="col-12">Timestamp: {{ $m->timestamp }}</div>
-    <div class="col-12">Queue: {{ $m->queue }}</div>
-    <div class="col-12">Role: {{ $m->role }}</div>
-    <div class="col-12">Season: {{ $m->season }}</div>
+    <div class="d-flex flex-row col-12 card p-2 m-2">
+      <img class="rounded-circle" src="{{ $m->champion->img_square }}" alt="">
+      <div class="pl-2">
+        <!-- {{ $m->details }}<br> -->
+        {{ $m->details->gameMode }}<br>
+        {{ date('H:i:s', $m->details->gameDuration) }}<br>
+        {{ $m->lane }}<br>
+        {{ date("d/m/Y H:i:s", ($m->timestamp / 1000) ) }}<br>
+        Season: {{ $m->season }}<br>
+        Role: {{ $m->role }}
+      </div>
+    </div>
   @endforeach 
   </div>
+  {{ $match->links() }}
 </div>
 
 @endsection

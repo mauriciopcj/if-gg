@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Champion;
+use App\MatchDetail;
+use App\Match;
 
-class ChampionTableSeeder extends Seeder
+class MatchDetailTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -26,18 +27,19 @@ class ChampionTableSeeder extends Seeder
         
         $context = stream_context_create($opts);
         
-        $result = file_get_contents("http://ddragon.leagueoflegends.com/cdn/9.24.2/data/pt_BR/champion.json", false, $context);
+        $matches = Match::all();
         
-        $responseData = json_decode($result, true);
-
-        foreach($responseData['data'] as $cha){
-            $champion = new Champion;
-            $champion->id = $cha['key'];
-            $champion->name = $cha['name'];
-            $champion->title = $cha['title'];
-            $champion->img_screen = "http://ddragon.leagueoflegends.com/cdn/img/champion/loading/".$cha['name']."_0.jpg";
-            $champion->img_square = "http://ddragon.leagueoflegends.com/cdn/9.24.2/img/champion/".$cha['image']['full'];
-            $champion->save();
+        foreach($matches as $mat){
+            $result = file_get_contents("https://br1.api.riotgames.com/lol/match/v4/matches/".$mat->gameId."?api_key=RGAPI-8fc2e434-3d9c-43af-a168-60046da9a41c", false, $context);
+        
+            $responseData = json_decode($result, true);
+            $detail = new MatchDetail;
+            $detail->gameId = $responseData['gameId'];
+            $detail->gameMode = $responseData['gameMode'];
+            $detail->gameType = $responseData['gameType'];
+            $detail->gameDuration = $responseData['gameDuration'];
+            $detail->gameCreation = $responseData['gameCreation'];
+            $detail->save();
         }
         
     }

@@ -9,7 +9,7 @@
 * Participants
 
 attribute          | description
---------------------------------
+-------------------|------------
 participantId      |
 match_detail_id    |
 spell1Id           |

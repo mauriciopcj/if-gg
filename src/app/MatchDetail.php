@@ -24,7 +24,7 @@ class MatchDetail extends Model
         return $this->hasOne('App\Match','gameId');
     }
 
-    public function match()
+    public function participants()
     {
         return $this->hasMany('App\Participants','match_detail_id');
     }

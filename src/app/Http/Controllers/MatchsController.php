@@ -14,7 +14,7 @@ class MatchsController extends Controller
      */
     public function index()
     {
-        $match = Match::all();
+        $match = Match::where('summoner_id','LIKE','t1zgW2FvDn95vE8C5w7HsVysqNUFAYTHzPypzLtZLXs1SA')->paginate(10);
         return view('matchs.index', compact('match'));
     }
 
