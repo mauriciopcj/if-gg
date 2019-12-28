@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Champion;
+use App\Iten;
 
-class ChampionTableSeeder extends Seeder
+class ItensTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -26,19 +26,30 @@ class ChampionTableSeeder extends Seeder
         
         $context = stream_context_create($opts);
         
-        $result = file_get_contents("http://ddragon.leagueoflegends.com/cdn/9.24.2/data/pt_BR/champion.json", false, $context);
+        $result = file_get_contents("http://ddragon.leagueoflegends.com/cdn/9.24.2/data/pt_BR/item.json", false, $context);
         
         $responseData = json_decode($result, true);
 
-        foreach($responseData['data'] as $cha){
-            $champion = new Champion;
-            $champion->id = $cha['key'];
-            $champion->name = $cha['name'];
-            $champion->title = $cha['title'];
-            $champion->img_screen = "http://ddragon.leagueoflegends.com/cdn/img/champion/loading/".$cha['name']."_0.jpg";
-            $champion->img_square = "http://ddragon.leagueoflegends.com/cdn/9.24.2/img/champion/".$cha['image']['full'];
-            $champion->save();
+        foreach($responseData['data'] as $key => $it)
+        {
+            $iten = new Iten;
+            $iten->id = $key;
+            $iten->name = $it['name'];
+            $iten->description = $it['description'];
+            $iten->image = $it['image']['full'];
+            $iten->goldBase = $it['gold']['base'];
+            $iten->goldTotal = $it['gold']['total'];
+            $iten->save();
         }
         
+        // item nulo para quando o slot do item estiver vazio
+        $iten = new Iten;
+        $iten->id = 0;
+        $iten->name = '';
+        $iten->description = '';
+        $iten->image = '';
+        $iten->goldBase = 0;
+        $iten->goldTotal = 0;
+        $iten->save();
     }
 }

@@ -18,7 +18,7 @@ class MatchsTableSeeder extends Seeder
                 'header'  => array(
                     "Origin" => "https://developer.riotgames.com",
                     "Accept-Charset" => "application/x-www-form-urlencoded; charset=UTF-8",
-                    "X-Riot-Token" => "RGAPI-8fc2e434-3d9c-43af-a168-60046da9a41c",
+                    "X-Riot-Token" => "RGAPI-e81166c2-070a-41b2-9421-60618dd6404e",
                     "Accept-Language" => "pt-BR,pt;q=0.8,en-US;q=0.5,en;q=0.3",
                     "User-Agent" => "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:71.0) Gecko/20100101 Firefox/71.0")
             )
@@ -26,7 +26,7 @@ class MatchsTableSeeder extends Seeder
         
         $context = stream_context_create($opts);
         
-        $result = file_get_contents("https://br1.api.riotgames.com/lol/match/v4/matchlists/by-account/1mSmyj4J_Oi8yM6EtHxzGzImu8LuO97GAZ6UuTHi5EVp?endIndex=15&api_key=RGAPI-8fc2e434-3d9c-43af-a168-60046da9a41c", false, $context);
+        $result = file_get_contents("https://br1.api.riotgames.com/lol/match/v4/matchlists/by-account/1mSmyj4J_Oi8yM6EtHxzGzImu8LuO97GAZ6UuTHi5EVp?endIndex=15&api_key=RGAPI-e81166c2-070a-41b2-9421-60618dd6404e", false, $context);
         
         $responseData = json_decode($result, true);
 

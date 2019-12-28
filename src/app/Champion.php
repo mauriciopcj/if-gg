@@ -22,4 +22,10 @@ class Champion extends Model
     {
         return $this->hasMany('App\Match','champion_id');
     }
+
+    public function participants()
+    {
+        return $this->hasMany('App\Match','championId');
+    }
+
 }

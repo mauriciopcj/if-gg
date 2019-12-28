@@ -27,7 +27,27 @@ class CreateParticipantsTable extends Migration
             $table->integer('deaths');
             $table->integer('goldEarned');
             $table->integer('champLevel');
-            $table->integer('championId');
+            $table->string('championId');
+            $table->integer('teamId');
+            $table->string('summonerName');
+            $table->boolean('win');
+            $table->integer('item0');
+            $table->integer('item1');
+            $table->integer('item2');
+            $table->integer('item3');
+            $table->integer('item4');
+            $table->integer('item5');
+            $table->integer('item6');
+            
+            $table->foreign('championId')->references('id')->on('champions')->onDelete('cascade');
+            
+            $table->foreign('item0')->references('id')->on('itens')->onDelete('cascade');
+            $table->foreign('item1')->references('id')->on('itens')->onDelete('cascade');
+            $table->foreign('item2')->references('id')->on('itens')->onDelete('cascade');
+            $table->foreign('item3')->references('id')->on('itens')->onDelete('cascade');
+            $table->foreign('item4')->references('id')->on('itens')->onDelete('cascade');
+            $table->foreign('item5')->references('id')->on('itens')->onDelete('cascade');
+            $table->foreign('item6')->references('id')->on('itens')->onDelete('cascade');
 
             $table->primary(['participantId','match_detail_id']);
             $table->foreign('match_detail_id')->references('gameId')->on('match_details')->onDelete('cascade');
