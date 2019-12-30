@@ -48,6 +48,9 @@ class CreateParticipantsTable extends Migration
             $table->foreign('item4')->references('id')->on('itens')->onDelete('cascade');
             $table->foreign('item5')->references('id')->on('itens')->onDelete('cascade');
             $table->foreign('item6')->references('id')->on('itens')->onDelete('cascade');
+           
+            $table->foreign('spell1Id')->references('key')->on('summoner_spells')->onDelete('cascade');
+            $table->foreign('spell2Id')->references('key')->on('summoner_spells')->onDelete('cascade');
 
             $table->primary(['participantId','match_detail_id']);
             $table->foreign('match_detail_id')->references('gameId')->on('match_details')->onDelete('cascade');

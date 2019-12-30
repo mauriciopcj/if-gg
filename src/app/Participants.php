@@ -47,6 +47,16 @@ class Participants extends Model
         return $this->belongsTo('App\Champion','championId');
     }
 
+    public function spellOne()
+    {
+        return $this->belongsTo('App\SummonerSpell','spell1Id');
+    }
+
+    public function spellTwo()
+    {
+        return $this->belongsTo('App\SummonerSpell','spell2Id');
+    }
+
     public function item_0()
     {
         return $this->belongsTo('App\Iten','item0');

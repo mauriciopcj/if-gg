@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Match;
+use App\SummonerSpell;
 
-class MatchsTableSeeder extends Seeder
+class SummonerSpellsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -26,23 +26,19 @@ class MatchsTableSeeder extends Seeder
         
         $context = stream_context_create($opts);
         
-        $result = file_get_contents("https://br1.api.riotgames.com/lol/match/v4/matchlists/by-account/1mSmyj4J_Oi8yM6EtHxzGzImu8LuO97GAZ6UuTHi5EVp?endIndex=15&api_key=RGAPI-12502b6d-9ae7-4830-ac12-d2b4fdc26db9", false, $context);
+        $result = file_get_contents("http://ddragon.leagueoflegends.com/cdn/9.24.2/data/pt_BR/summoner.json", false, $context);
         
         $responseData = json_decode($result, true);
 
-        foreach($responseData['matches'] as $ma){
-            $match = new Match;
-            $match->lane = $ma['lane'];
-            $match->gameId = $ma['gameId'];
-            $match->champion_id = $ma['champion'];
-            $match->platformId = $ma['platformId'];
-            $match->timestamp = $ma['timestamp'];
-            $match->queue = $ma['queue'];
-            $match->role = $ma['role'];
-            $match->season = $ma['season'];
-            $match->summoner_id = "t1zgW2FvDn95vE8C5w7HsVysqNUFAYTHzPypzLtZLXs1SA";
-            $match->save();
+        foreach($responseData['data'] as $sumSpell)
+        {
+            $spell = new SummonerSpell;
+            $spell->key = $sumSpell['key'];
+            $spell->name = $sumSpell['name'];
+            $spell->description = $sumSpell['description'];
+            $spell->image = "http://ddragon.leagueoflegends.com/cdn/9.24.2/img/spell/".$sumSpell['image']['full'];
+            $spell->cooldownBurn = $sumSpell['cooldownBurn'];
+            $spell->save();
         }
-        
     }
 }
