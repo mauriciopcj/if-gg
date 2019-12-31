@@ -19,7 +19,7 @@
 
     @foreach($m->details->participants as $p)
 
-      @if($p->summonerName == "Lanolder")
+      @if($p->summonerName == "Boca de Fossa")
 
         @if($p->win == true)
         <div class="alert alert-success card p-2 m-2 col-12 d-flex flex-row justify-content-center" id="full_match">
@@ -49,13 +49,13 @@
 
             <div class="col-12 col-md-4 d-flex pt-3 pb-3 p-0 flex-row justify-content-center align-items-center">
 
-              <img class="border-left border-white" style="max-width:40px;heigth:auto;" src="{{ $p->item_0->image }}" alt="">
-              <img class="border-left border-white" style="max-width:40px;heigth:auto;" src="{{ $p->item_1->image }}" alt="">
-              <img class="border-left border-white" style="max-width:40px;heigth:auto;" src="{{ $p->item_2->image }}" alt="">
-              <img class="border-left border-white" style="max-width:40px;heigth:auto;" src="{{ $p->item_3->image }}" alt="">
-              <img class="border-left border-white" style="max-width:40px;heigth:auto;" src="{{ $p->item_4->image }}" alt="">
-              <img class="border-left border-white" style="max-width:40px;heigth:auto;" src="{{ $p->item_5->image }}" alt="">
-              <img class="border-left border-white" style="max-width:40px;heigth:auto;" src="{{ $p->item_6->image }}" alt="">
+              <img class="border-left border-white" style="max-width:40px;heigth:auto;" src="http://ddragon.leagueoflegends.com/cdn/9.24.2/img/item/{{ $p->item0}}.png" alt="">
+              <img class="border-left border-white" style="max-width:40px;heigth:auto;" src="http://ddragon.leagueoflegends.com/cdn/9.24.2/img/item/{{ $p->item1}}.png" alt="">
+              <img class="border-left border-white" style="max-width:40px;heigth:auto;" src="http://ddragon.leagueoflegends.com/cdn/9.24.2/img/item/{{ $p->item2}}.png" alt="">
+              <img class="border-left border-white" style="max-width:40px;heigth:auto;" src="http://ddragon.leagueoflegends.com/cdn/9.24.2/img/item/{{ $p->item3}}.png" alt="">
+              <img class="border-left border-white" style="max-width:40px;heigth:auto;" src="http://ddragon.leagueoflegends.com/cdn/9.24.2/img/item/{{ $p->item4}}.png" alt="">
+              <img class="border-left border-white" style="max-width:40px;heigth:auto;" src="http://ddragon.leagueoflegends.com/cdn/9.24.2/img/item/{{ $p->item5}}.png" alt="">
+              <img class="border-left border-white" style="max-width:40px;heigth:auto;" src="http://ddragon.leagueoflegends.com/cdn/9.24.2/img/item/{{ $p->item6}}.png" alt="">
 
             </div>
 
@@ -143,13 +143,13 @@
             <tr>
               <td>{{ $part->summonerName }}</td>
               <td>
-                <img style="max-width:20px;heigth:auto;" src="{{ $part->item_0->image }}" alt="">
-                <img style="max-width:20px;heigth:auto;" src="{{ $part->item_1->image }}" alt="">
-                <img style="max-width:20px;heigth:auto;" src="{{ $part->item_2->image }}" alt="">
-                <img style="max-width:20px;heigth:auto;" src="{{ $part->item_3->image }}" alt="">
-                <img style="max-width:20px;heigth:auto;" src="{{ $part->item_4->image }}" alt="">
-                <img style="max-width:20px;heigth:auto;" src="{{ $part->item_5->image }}" alt="">
-                <img style="max-width:20px;heigth:auto;" src="{{ $part->item_6->image }}" alt=""></td>
+                <img style="max-width:20px;heigth:auto;" src="http://ddragon.leagueoflegends.com/cdn/9.24.2/img/item/{{ $part->item0}}.png" alt="">
+                <img style="max-width:20px;heigth:auto;" src="http://ddragon.leagueoflegends.com/cdn/9.24.2/img/item/{{ $part->item1}}.png" alt="">
+                <img style="max-width:20px;heigth:auto;" src="http://ddragon.leagueoflegends.com/cdn/9.24.2/img/item/{{ $part->item2}}.png" alt="">
+                <img style="max-width:20px;heigth:auto;" src="http://ddragon.leagueoflegends.com/cdn/9.24.2/img/item/{{ $part->item3}}.png" alt="">
+                <img style="max-width:20px;heigth:auto;" src="http://ddragon.leagueoflegends.com/cdn/9.24.2/img/item/{{ $part->item4}}.png" alt="">
+                <img style="max-width:20px;heigth:auto;" src="http://ddragon.leagueoflegends.com/cdn/9.24.2/img/item/{{ $part->item5}}.png" alt="">
+                <img style="max-width:20px;heigth:auto;" src="http://ddragon.leagueoflegends.com/cdn/9.24.2/img/item/{{ $part->item6}}.png" alt=""></td>
               <td><img style="max-width:20px;height:auto;" src="{{ $part->champion->img_square }}" alt="">{{ $part->champLevel }}</td>
               <td>{{ $part->goldEarned }}</td>
               <td>{{ $part->kills }} \ {{ $part->deaths }} \ {{ $part->assists }}</td>

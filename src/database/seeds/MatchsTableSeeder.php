@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Match;
+use App\Services\LolRequestService;
 
 class MatchsTableSeeder extends Seeder
 {
@@ -12,25 +13,13 @@ class MatchsTableSeeder extends Seeder
      */
     public function run()
     {
-        $opts = array('https' =>
-            array(
-                'method'  => 'GET',
-                'header'  => array(
-                    "Origin" => "https://developer.riotgames.com",
-                    "Accept-Charset" => "application/x-www-form-urlencoded; charset=UTF-8",
-                    "X-Riot-Token" => "RGAPI-12502b6d-9ae7-4830-ac12-d2b4fdc26db9",
-                    "Accept-Language" => "pt-BR,pt;q=0.8,en-US;q=0.5,en;q=0.3",
-                    "User-Agent" => "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:71.0) Gecko/20100101 Firefox/71.0")
-            )
-        );
-        
-        $context = stream_context_create($opts);
-        
-        $result = file_get_contents("https://br1.api.riotgames.com/lol/match/v4/matchlists/by-account/1mSmyj4J_Oi8yM6EtHxzGzImu8LuO97GAZ6UuTHi5EVp?endIndex=15&api_key=RGAPI-12502b6d-9ae7-4830-ac12-d2b4fdc26db9", false, $context);
-        
+        $lolService = new LolRequestService();
+
+        $result = $lolService->getMatchs('mwAwq1lx_0yyOJ8JLEOKQgMZAkdzR_HUF7LpBM99PtjuYkI', '15');
+
         $responseData = json_decode($result, true);
 
-        foreach($responseData['matches'] as $ma){
+        foreach ($responseData['matches'] as $ma) {
             $match = new Match;
             $match->lane = $ma['lane'];
             $match->gameId = $ma['gameId'];
@@ -40,9 +29,8 @@ class MatchsTableSeeder extends Seeder
             $match->queue = $ma['queue'];
             $match->role = $ma['role'];
             $match->season = $ma['season'];
-            $match->summoner_id = "t1zgW2FvDn95vE8C5w7HsVysqNUFAYTHzPypzLtZLXs1SA";
+            $match->summoner_id = "TzFfMgC7gDTyxtAS-t-TL1Z91qw2TV9TtzHt7SkSrq4VQFo";
             $match->save();
         }
-        
     }
 }

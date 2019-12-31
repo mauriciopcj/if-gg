@@ -41,13 +41,13 @@ class CreateParticipantsTable extends Migration
             
             $table->foreign('championId')->references('id')->on('champions')->onDelete('cascade');
             
-            $table->foreign('item0')->references('id')->on('itens')->onDelete('cascade');
-            $table->foreign('item1')->references('id')->on('itens')->onDelete('cascade');
-            $table->foreign('item2')->references('id')->on('itens')->onDelete('cascade');
-            $table->foreign('item3')->references('id')->on('itens')->onDelete('cascade');
-            $table->foreign('item4')->references('id')->on('itens')->onDelete('cascade');
-            $table->foreign('item5')->references('id')->on('itens')->onDelete('cascade');
-            $table->foreign('item6')->references('id')->on('itens')->onDelete('cascade');
+            // $table->foreign('item0')->references('id')->on('itens')->onDelete('cascade');
+            // $table->foreign('item1')->references('id')->on('itens')->onDelete('cascade');
+            // $table->foreign('item2')->references('id')->on('itens')->onDelete('cascade');
+            // $table->foreign('item3')->references('id')->on('itens')->onDelete('cascade');
+            // $table->foreign('item4')->references('id')->on('itens')->onDelete('cascade');
+            // $table->foreign('item5')->references('id')->on('itens')->onDelete('cascade');
+            // $table->foreign('item6')->references('id')->on('itens')->onDelete('cascade');
            
             $table->foreign('spell1Id')->references('key')->on('summoner_spells')->onDelete('cascade');
             $table->foreign('spell2Id')->references('key')->on('summoner_spells')->onDelete('cascade');
