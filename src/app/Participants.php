@@ -57,38 +57,4 @@ class Participants extends Model
         return $this->belongsTo('App\SummonerSpell','spell2Id');
     }
 
-    public function item_0()
-    {
-        return $this->belongsTo('App\Iten','item0');
-    }
-
-    public function item_1()
-    {
-        return $this->belongsTo('App\Iten','item1');
-    }
-
-    public function item_2()
-    {
-        return $this->belongsTo('App\Iten','item2');
-    }
-
-    public function item_3()
-    {
-        return $this->belongsTo('App\Iten','item3');
-    }
-
-    public function item_4()
-    {
-        return $this->belongsTo('App\Iten','item4');
-    }
-
-    public function item_5()
-    {
-        return $this->belongsTo('App\Iten','item5');
-    }
-
-    public function item_6()
-    {
-        return $this->belongsTo('App\Iten','item6');
-    }
 }
