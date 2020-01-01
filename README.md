@@ -8,6 +8,7 @@
 * MatchDetail
 * Participants
 * Iten
+* SummonerSpell
 
 ## Relationship
 
@@ -27,86 +28,98 @@ MatchDetail >> Participants
 
 Iten >> Participants
 
+SummonerSpeel >> Participants
+
 ## Tables descriptions
 
 ### Summoner
 
-attribute       | description
-----------------|------------
-id              |
-name            |
-puuid           |
-summonerLevel   |
-revisionDate    |
-accountId       |
-profileIconId   |
+attribute       | type          | description
+----------------|---------------|------------
+id              | string        |
+name            | string        |
+puuid           | string        |
+summonerLevel   | bigInteger    |
+revisionDate    | bigInteger    |
+accountId       | string        |
+profileIconId   | integer       |
 
 ### Champion
 
-attribute   | description
-------------|------------
-id          |
-name        |
-title       |
-img_screen  |
-img_square  |
+attribute   | type      | description
+------------|-----------|------------
+id          | string    |
+name        | string    |
+title       | string    |
+img_screen  | string    |
+img_square  | string    |
 
 ### Match
 
-attribute   | description
-------------|------------
-gameId      |
-lane        |
-champion_id |
-platformId  |
-timestamp   |
-queue       |
-role        |
-season      |
-summoner_id |
+attribute   | type          | description
+------------|---------------|------------
+gameId      | bigInteger    |
+lane        | string        |
+champion_id | string        |
+platformId  | string        |
+queue       | integer       |
+role        | string        |
+season      | integer       |
+summoner_id | string        |
 
 ### MatchDetail
 
-attribute   | description
-------------|------------
-gameId      |
-gameMode    |
-gameType    |
-gameDuration|
-gameCreation|
+attribute   | type          | description
+------------|---------------|------------
+gameId      | bigInteger    |
+gameMode    | string        |
+gameType    | string        |
+gameDuration| bigInteger    |
+gameCreation| bigInteger    |
 
 ### Iten
 
-attribute   | description
-------------|------------
-id          |
-name        |
-description |
-image       |
-goldBase    |
-goldTotal   |
+attribute   | type      | description
+------------|-----------|--------------
+id          | integer   |
+name        | longText  |
+description | longText  |
+image       | string    |
+goldBase    | integer   |
+goldTotal   | integer   |
+
+### Summoner Spell
+
+attribute   | type      | description
+------------|-----------|--------------
+key         | integer   |
+name        | string    |
+description | longText  |
+cooldownBurn| string    |
+image       | string    |
 
 ### Participants
 
-attribute          | description
--------------------|------------
-participantId      |
-match_detail_id    |
-spell1Id           |
-lane               |
-spell2Id           |
-largestMultiKill   |
-kills              |
-assists            |
-deaths             |
-goldEarned         |
-champLevel         |
-championId         |
-win                |
-item0              |
-item1              |
-item2              |
-item3              |
-item4              |
-item5              |
-item6              |
+attribute          | type       | description
+-------------------|------------|------------
+participantId      | integer    |
+match_detail_id    | bigInteger |
+spell1Id           | integer    |
+lane               | string     |
+spell2Id           | integer    |
+largestMultiKill   | integer    |
+kills              | integer    |
+assists            | integer    |
+deaths             | integer    |
+goldEarned         | integer    |
+champLevel         | integer    |
+championId         | string     |
+teamId             | integer    |
+win                | boolean    |
+item0              | integer    |
+item1              | integer    |
+item2              | integer    |
+item3              | integer    |
+item4              | integer    |
+item5              | integer    |
+item6              | integer    |
