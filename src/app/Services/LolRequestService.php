@@ -43,13 +43,4 @@ class LolRequestService
         $context = stream_context_create($this->opts);
         return file_get_contents($this->baseUrl . "lol/match/v4/matches/" . $matchId . '?api_key=' . $this->apiKey, false, $context);
     }
-    /**
-     * Bootstrap any application services.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        //
-    }
 }
