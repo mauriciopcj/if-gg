@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Match;
+use App\Services\LolRequestService;
 use Illuminate\Http\Request;
 
 class MatchsController extends Controller
@@ -15,7 +16,8 @@ class MatchsController extends Controller
     public function index()
     {
         $match = Match::where('summoner_id','LIKE','TzFfMgC7gDTyxtAS-t-TL1Z91qw2TV9TtzHt7SkSrq4VQFo')->paginate(10);
-        return view('matchs.index', compact('match'));
+        $version = (new LolRequestService(true))->getLastVersion();
+        return view('matchs.index', compact(['match', 'version']));
     }
 
     /**
