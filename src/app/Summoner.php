@@ -21,8 +21,13 @@ class Summoner extends Model
         'profileIconId'  
     ];
 
-    public function matchs()
+    // public function matchs()
+    // {
+    //     return $this->hasMany('App\Match','summoner_id');
+    // }
+
+    public function participants()
     {
-        return $this->hasMany('App\Match','summoner_id');
+        return $this->hasMany('App\Participants','summonerId');
     }
 }

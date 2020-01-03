@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('/summoner', 'SummonerController');
-
-Route::resource('/match', 'MatchsController');
+Route::resources([
+    'summoner' => 'SummonerController',
+    'match' => 'MatchsController',
+    'champion' => 'ChampionsController'
+]);

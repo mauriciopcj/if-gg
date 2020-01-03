@@ -28,9 +28,6 @@ class CreateMatchesTable extends Migration
             $table->string('champion_id');
             $table->foreign('champion_id')->references('id')->on('champions')->onDelete('cascade');
 
-            $table->string('summoner_id');
-            $table->foreign('summoner_id')->references('id')->on('summoners')->onDelete('cascade');
-
             $table->timestamps();
         });
     }

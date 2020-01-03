@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 use App\MatchDetail;
 use App\Match;
 use App\Participants;
+use App\Summoner;
 use App\Services\LolRequestService;
 class MatchDetailTableSeeder extends Seeder
 {
@@ -30,8 +31,32 @@ class MatchDetailTableSeeder extends Seeder
             $detail->gameCreation = $responseData['gameCreation'];
             $detail->save();
 
+            $participants = array();
+            foreach($responseData['participantIdentities'] as $data)
+            {
+                $participants[$data['participantId']] = $data['player']['summonerId'];
+            }
+
             foreach($responseData['participants'] as $part)
             {
+                // tem que adicionar o invocador antes de criar o participante
+                if(Summoner::where('id',$participants[$part['participantId']])->exists()){
+
+                } else {
+                    $teste = $lolService->getSummonerById($participants[$part['participantId']]);
+                    $summ = json_decode($teste,true);
+
+                    $summoner = new Summoner;
+                    $summoner->profileIconId = (int) $summ['profileIconId'];
+                    $summoner->name = $summ['name'];
+                    $summoner->puuid = $summ['puuid'];
+                    $summoner->summonerLevel = (int) $summ['summonerLevel'];
+                    $summoner->accountId = $summ['accountId'];
+                    $summoner->id = $summ['id'];
+                    $summoner->revisionDate = (int) $summ['revisionDate'];
+                    $summoner->save();
+                }
+
                 $participant = new Participants;
                 $participant->participantId = $part['participantId'];
                 $participant->match_detail_id = $responseData['gameId'];
@@ -54,6 +79,7 @@ class MatchDetailTableSeeder extends Seeder
                     }
                 }
                 $participant->win = $part['stats']['win'];
+                $participant->summonerId = $participants[$part['participantId']];
                 $participant->item0 = $part['stats']['item0'];
                 $participant->item1 = $part['stats']['item1'];
                 $participant->item2 = $part['stats']['item2'];

@@ -36,28 +36,40 @@ class LolRequestService
         $context = stream_context_create($this->opts);
         return file_get_contents("$this->baseUrl/lol/summoner/v4/summoners/by-name/$name?api_key=$this->apiKey", false, $context);
     }
+
+    public function getSummonerById(string $id)
+    {
+        $context = stream_context_create($this->opts);
+        return file_get_contents("$this->baseUrl/lol/summoner/v4/summoners/$id?api_key=$this->apiKey", false, $context);
+    }
+    
     public function getMatchs(string $accountId, string $beginIndex = '0', string $endIndex = '15')
     {
         $context = stream_context_create($this->opts);
         return file_get_contents("$this->baseUrl/lol/match/v4/matchlists/by-account/$accountId?beginIndex=$beginIndex&endIndex=$endIndex&api_key=$this->apiKey", false, $context);
     }
+
     public function getMatchDetail(string $matchId)
     {
         $context = stream_context_create($this->opts);
         return file_get_contents("$this->baseUrl/lol/match/v4/matches/$matchId?api_key=$this->apiKey", false, $context);
     }
+
     public function getChampions()
     {
         return json_decode(file_get_contents("http://ddragon.leagueoflegends.com/cdn/" . $this->versions[0] . "/data/pt_BR/champion.json"), true);
     }
+    
     public function getItems()
     {
         return json_decode(file_get_contents("http://ddragon.leagueoflegends.com/cdn/" . $this->versions[0] . "/data/pt_BR/item.json"), true);
     }
+
     public function getSpells()
     {
         return json_decode(file_get_contents("http://ddragon.leagueoflegends.com/cdn/" . $this->versions[0] . "/data/pt_BR/summoner.json"), true);
     }
+
     public function getLastVersion()
     {
         return $this->versions[0];

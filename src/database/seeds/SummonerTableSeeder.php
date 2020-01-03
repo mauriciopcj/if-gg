@@ -14,7 +14,7 @@ class SummonerTableSeeder extends Seeder
     public function run()
     {
         $lolService = new LolRequestService();
-        $responseData = json_decode($lolService->getSummonerByName('Boca%20de%20Fossa'), true);
+        $responseData = json_decode($lolService->getSummonerByName('Lanolder'), true);
         
         $summoner = new Summoner;
         $summoner->profileIconId = (int) $responseData['profileIconId'];

@@ -27,6 +27,5 @@ class MatchDetail extends Model
     public function participants()
     {
         return $this->hasMany('App\Participants','match_detail_id');
-    }
-    
+    }    
 }

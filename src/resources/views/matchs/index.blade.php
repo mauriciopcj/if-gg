@@ -19,12 +19,12 @@
 
     @foreach($m->details->participants as $p)
 
-    @if($p->summonerName == "Boca de Fossa")
+    @if($p->summonerName == $name)
 
     @if($p->win == true)
-    <div class="alert alert-success card p-2 col-12 d-flex flex-row justify-content-center" id="heading{{ $m->gameId }}">
+    <div class="border border-dark alert alert-success card p-2 col-12 d-flex flex-row justify-content-center" id="heading{{ $m->gameId }}">
       @else
-      <div class="alert alert-danger card p-2 col-12 d-flex flex-row justify-content-center" id="heading{{ $m->gameId }}">
+      <div class="border border-dark alert alert-danger card p-2 col-12 d-flex flex-row justify-content-center" id="heading{{ $m->gameId }}">
         @endif
 
         <div class="col-12 row row-cols-12 justify-content-between">

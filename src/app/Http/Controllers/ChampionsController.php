@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Champion;
+use App\Services\LolRequestService;
 use Illuminate\Http\Request;
 
 class ChampionsController extends Controller
@@ -14,7 +15,14 @@ class ChampionsController extends Controller
      */
     public function index()
     {
-        //
+        $match = Champion::all();
+
+        $version = (new LolRequestService(true))->getLastVersion();
+
+        $name = 'Lanolder';
+
+        return view('champions.index', compact(['match', 'version', 'name']));
+
     }
 
     /**

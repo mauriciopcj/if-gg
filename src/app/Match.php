@@ -17,16 +17,15 @@ class Match extends Model
         'timestamp',
         'queue',
         'role',
-        'season',
-        'summoner_id'
+        'season'
     ];
 
     protected $table = 'matches';
 
-    public function summoner()
-    {
-        return $this->belongsTo('App\Summoner','summoner_id');
-    }
+    // public function summoner()
+    // {
+    //     return $this->belongsTo('App\Summoner','summoner_id');
+    // }
 
     public function champion()
     {

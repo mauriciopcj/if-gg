@@ -15,7 +15,7 @@ class MatchsTableSeeder extends Seeder
     {
         $lolService = new LolRequestService();
 
-        $result = $lolService->getMatchs('mwAwq1lx_0yyOJ8JLEOKQgMZAkdzR_HUF7LpBM99PtjuYkI','0' , '15');
+        $result = $lolService->getMatchs('1mSmyj4J_Oi8yM6EtHxzGzImu8LuO97GAZ6UuTHi5EVp','0' , '15');
 
         $responseData = json_decode($result, true);
 
@@ -29,7 +29,6 @@ class MatchsTableSeeder extends Seeder
             $match->queue = $ma['queue'];
             $match->role = $ma['role'];
             $match->season = $ma['season'];
-            $match->summoner_id = "TzFfMgC7gDTyxtAS-t-TL1Z91qw2TV9TtzHt7SkSrq4VQFo";
             $match->save();
         }
     }

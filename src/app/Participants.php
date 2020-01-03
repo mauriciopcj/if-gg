@@ -25,6 +25,7 @@ class Participants extends Model
         'champLevel',
         'championId',
         'win',
+        'summonerId',
         'teamId',
         'item0',
         'item1',
@@ -40,6 +41,11 @@ class Participants extends Model
     public function match()
     {
         return $this->belongsTo('App\MatchDetails',['participantId','match_detail_id']);
+    }
+
+    public function summoner()
+    {
+        return $this->belongsTo('App\Summoner',['participantId','match_detail_id']);
     }
 
     public function champion()

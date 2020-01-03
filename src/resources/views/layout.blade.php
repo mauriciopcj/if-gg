@@ -21,6 +21,7 @@
       <ul class="navbar-nav mr-auto">
         <li class="nav-item"><a  class="nav-link" href="{{ route('summoner.index') }}">Summoners</a></li>
         <li class="nav-item"><a  class="nav-link" href="{{ route('match.index') }}">Matchs</a></li>
+        <li class="nav-item"><a  class="nav-link" href="{{ route('champion.index') }}">Champions</a></li>
       </ul>
     </div>
   </nav>

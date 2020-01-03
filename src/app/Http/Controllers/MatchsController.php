@@ -15,9 +15,13 @@ class MatchsController extends Controller
      */
     public function index()
     {
-        $match = Match::where('summoner_id','LIKE','TzFfMgC7gDTyxtAS-t-TL1Z91qw2TV9TtzHt7SkSrq4VQFo')->paginate(10);
+        $match = Match::where('participants.summonerId','LIKE','t1zgW2FvDn95vE8C5w7HsVysqNUFAYTHzPypzLtZLXs1SA')->join('match_details','matches.gameId','=','match_details.gameId')->join('participants','participants.match_detail_id','=','match_details.gameId')->orderBy('gameCreation','desc')->paginate(10);
+
         $version = (new LolRequestService(true))->getLastVersion();
-        return view('matchs.index', compact(['match', 'version']));
+
+        $name = 'Lanolder';
+
+        return view('matchs.index', compact(['match', 'version', 'name']));
     }
 
     /**

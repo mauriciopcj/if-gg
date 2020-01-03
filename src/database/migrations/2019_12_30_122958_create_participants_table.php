@@ -31,6 +31,7 @@ class CreateParticipantsTable extends Migration
             $table->integer('teamId');
             $table->string('summonerName');
             $table->boolean('win');
+            $table->string('summonerId');
             $table->integer('item0');
             $table->integer('item1');
             $table->integer('item2');
@@ -55,6 +56,7 @@ class CreateParticipantsTable extends Migration
             $table->primary(['participantId','match_detail_id']);
             $table->foreign('match_detail_id')->references('gameId')->on('match_details')->onDelete('cascade');
 
+            $table->foreign('summonerId')->references('id')->on('summoners')->onDelete('cascade');
             $table->timestamps();
         });
     }
