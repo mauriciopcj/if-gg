@@ -8,8 +8,8 @@ class LolRequestService
     public $apiKey;
     public $opts;
     public $baseUrl;
-
-    public function __construct()
+    public $versions;
+    public function __construct(bool $getVersions = false)
     {
         $this->apiKey = env('LOL_API_KEY');
         $this->opts = array(
@@ -26,30 +26,40 @@ class LolRequestService
             )
         );
         $this->baseUrl = 'https://br1.api.riotgames.com/';
+        if ($getVersions) {
+            $this->versions = json_decode(file_get_contents('https://ddragon.leagueoflegends.com/api/versions.json'));
+        }
     }
 
     public function getSummonerByName(string $name)
     {
         $context = stream_context_create($this->opts);
-        return file_get_contents($this->baseUrl . 'lol/summoner/v4/summoners/by-name/' . $name . '?api_key=' . $this->apiKey, false, $context);
+        return file_get_contents("$this->baseUrl/lol/summoner/v4/summoners/by-name/$name?api_key=$this->apiKey", false, $context);
     }
-    public function getMatchs(string $accountId, string $endIndex)
+    public function getMatchs(string $accountId, string $beginIndex = '0', string $endIndex = '15')
     {
         $context = stream_context_create($this->opts);
-        return file_get_contents($this->baseUrl . 'lol/match/v4/matchlists/by-account/' . $accountId . '?endIndex=' . $endIndex . '&api_key=' . $this->apiKey, false, $context);
+        return file_get_contents("$this->baseUrl/lol/match/v4/matchlists/by-account/$accountId?beginIndex=$beginIndex&endIndex=$endIndex&api_key=$this->apiKey", false, $context);
     }
     public function getMatchDetail(string $matchId)
     {
         $context = stream_context_create($this->opts);
-        return file_get_contents($this->baseUrl . "lol/match/v4/matches/" . $matchId . '?api_key=' . $this->apiKey, false, $context);
+        return file_get_contents("$this->baseUrl/lol/match/v4/matches/$matchId?api_key=$this->apiKey", false, $context);
     }
-    /**
-     * Bootstrap any application services.
-     *
-     * @return void
-     */
-    public function boot()
+    public function getChampions()
     {
-        //
+        return json_decode(file_get_contents("http://ddragon.leagueoflegends.com/cdn/" . $this->versions[0] . "/data/pt_BR/champion.json"), true);
+    }
+    public function getItems()
+    {
+        return json_decode(file_get_contents("http://ddragon.leagueoflegends.com/cdn/" . $this->versions[0] . "/data/pt_BR/item.json"), true);
+    }
+    public function getSpells()
+    {
+        return json_decode(file_get_contents("http://ddragon.leagueoflegends.com/cdn/" . $this->versions[0] . "/data/pt_BR/summoner.json"), true);
+    }
+    public function getLastVersion()
+    {
+        return $this->versions[0];
     }
 }
