@@ -15,7 +15,7 @@ class MatchsTableSeeder extends Seeder
     {
         $lolService = new LolRequestService();
 
-        $result = $lolService->getMatchs('1mSmyj4J_Oi8yM6EtHxzGzImu8LuO97GAZ6UuTHi5EVp','0' , '15');
+        $result = $lolService->getMatchs('1mSmyj4J_Oi8yM6EtHxzGzImu8LuO97GAZ6UuTHi5EVp','0' , '10');
 
         $responseData = json_decode($result, true);
 

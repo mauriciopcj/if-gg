@@ -15,7 +15,7 @@ class ChampionsController extends Controller
      */
     public function index()
     {
-        $match = Champion::all();
+        $match = Champion::orderBy('name')->get();
 
         $version = (new LolRequestService(true))->getLastVersion();
 

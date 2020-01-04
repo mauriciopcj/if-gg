@@ -34,7 +34,12 @@ class MatchDetailTableSeeder extends Seeder
             $participants = array();
             foreach($responseData['participantIdentities'] as $data)
             {
-                $participants[$data['participantId']] = $data['player']['summonerId'];
+                $participants[$data['participantId']] = [
+                    'id' => $data['player']['summonerId'],
+                    'accountId' => $data['player']['currentAccountId'],
+                    'name' => $data['player']['summonerName'],
+                    'profileIconId' => $data['player']['profileIcon']
+                ];
             }
 
             foreach($responseData['participants'] as $part)
@@ -43,17 +48,12 @@ class MatchDetailTableSeeder extends Seeder
                 if(Summoner::where('id',$participants[$part['participantId']])->exists()){
 
                 } else {
-                    $teste = $lolService->getSummonerById($participants[$part['participantId']]);
-                    $summ = json_decode($teste,true);
 
                     $summoner = new Summoner;
-                    $summoner->profileIconId = (int) $summ['profileIconId'];
-                    $summoner->name = $summ['name'];
-                    $summoner->puuid = $summ['puuid'];
-                    $summoner->summonerLevel = (int) $summ['summonerLevel'];
-                    $summoner->accountId = $summ['accountId'];
-                    $summoner->id = $summ['id'];
-                    $summoner->revisionDate = (int) $summ['revisionDate'];
+                    $summoner->profileIconId = (int) $participants[$part['participantId']]['profileIconId'];
+                    $summoner->name = $participants[$part['participantId']]['name'];
+                    $summoner->accountId = $participants[$part['participantId']]['accountId'];
+                    $summoner->id = $participants[$part['participantId']]['id'];
                     $summoner->save();
                 }
 
@@ -79,7 +79,7 @@ class MatchDetailTableSeeder extends Seeder
                     }
                 }
                 $participant->win = $part['stats']['win'];
-                $participant->summonerId = $participants[$part['participantId']];
+                $participant->summonerId = $participants[$part['participantId']]['id'];
                 $participant->item0 = $part['stats']['item0'];
                 $participant->item1 = $part['stats']['item1'];
                 $participant->item2 = $part['stats']['item2'];

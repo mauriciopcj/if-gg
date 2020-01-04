@@ -18,7 +18,7 @@ class SummonerController extends Controller
      */
     public function index()
     {
-        $summoner = Summoner::all();
+        $summoner = Summoner::orderBy('name')->get();
         $version = (new LolRequestService(true))->getLastVersion();
         return view('summoners.index', compact(['summoner', 'version']));
     }

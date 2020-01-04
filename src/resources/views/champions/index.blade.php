@@ -16,9 +16,9 @@
 
     @foreach($match as $m)
 
-        <div class="col m-2">
-            <img src="{{ $m->img_square }}" alt="">
-            {{ $m->name }}
+        <div class="col m-2 d-flex flex-column align-items-center justify-content-center">
+            <img src="{{ $m->img_square }}">
+            <h5>{{ $m->name }}</h5>
         </div>
 
     @endforeach

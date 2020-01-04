@@ -19,9 +19,9 @@ class CreateSummonerTable extends Migration
             $table->primary('id');
 
             $table->string('name');
-            $table->string('puuid');
-            $table->bigInteger('summonerLevel');
-            $table->bigInteger('revisionDate');
+            $table->string('puuid')->nullable($value = true);
+            $table->bigInteger('summonerLevel')->nullable($value = true);
+            $table->bigInteger('revisionDate')->nullable($value = true);
             $table->string('accountId');
             $table->integer('profileIconId');
             $table->timestamps();
