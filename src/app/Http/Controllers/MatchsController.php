@@ -115,8 +115,8 @@ class MatchsController extends Controller
                 ->join('participants', 'participants.match_detail_id', '=', 'match_details.gameId')
                 ->orderBy('gameCreation', 'desc')->paginate(10);
             $version = $lolService->getLastVersion();
-            $name = $data['name'];
-            return view('matchs.index', compact(['match', 'version', 'name']));
+            $summoner = $data;
+            return view('matchs.index', compact(['match', 'version', 'summoner']));
         }
         return redirect('/');
     }

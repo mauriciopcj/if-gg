@@ -37,7 +37,8 @@ class SummonerController extends Controller
         //ele verifica se existe o summoner e redireciona pro matchs mandando os matchs do summoner
         //se não existir ele cria e redireciona do msm jeito, mas não sei se ta redirecionando do melhor jeito
 
-        $summoner = Summoner::where('name', 'LIKE', trim($_GET['name']))->first();
+        $summoner = Summoner::where('name', 'LIKE', trim($_GET['name']))
+            ->where('summonerLevel', '<>', 'NULL')->first();
         if ($summoner) {
             Session::put('summoner', $summoner);
             Session::save();
@@ -69,7 +70,7 @@ class SummonerController extends Controller
      */
     public function store(array $summoner)
     {
-        $Sum = Summoner::create($summoner);
+        $Sum = Summoner::updateOrCreate(['id' => $summoner['id']], $summoner);
         Session::put('summoner', $Sum);
         Session::save();
         return redirect('/match');
@@ -98,7 +99,7 @@ class SummonerController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     *   the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Summoner  $summoner
