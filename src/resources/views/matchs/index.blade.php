@@ -1,6 +1,5 @@
 @extends('layout')
 
-@section('title', 'Matchs')
 
 @section('content')
 @if(session()->get('success'))
@@ -12,6 +11,23 @@
 </div><br />
 @endif
 
+<div class="col-12 col-md-6 col-lg-10">
+  <div class="card d-flex flex-row m-2">
+    <img class="rounded-circle col-4 p-2 align-self-center" src="http://ddragon.leagueoflegends.com/cdn/{{ $version }}/img/profileicon/{{ $summoner->profileIconId }}.png">
+    <div class="d-flex flex-column justify-content-center col-8 p-2">
+      <h5>{{ $summoner->name }}</h5>
+      <p>
+        Level: {{$summoner->summonerLevel}}<br>
+        <!-- Revision Date:<br>{{ date("d/m/Y H:i:s", ($summoner->revisionDate / 1000) ) }}<br> -->
+        <!-- <td>{{$summoner->puuid}}</td><hr>
+            <td>{{$summoner->idapi}}</td><hr>
+            <td>{{$summoner->accountId}}</td><hr> -->
+        </td>
+      </p>
+    </div>
+  </div>
+</div>
+<h1 class="text-center my-5">Matchs</h1>
 <div class="container">
 
   <div id="accordionMatches" class="accordion row row-cols-12">
@@ -19,7 +35,7 @@
 
     @foreach($m->details->participants as $p)
 
-    @if($p->summonerName == $name)
+    @if($p->summonerName == $summoner->name)
 
     @if($p->win == true)
     <div class="border border-dark alert alert-success card p-2 col-12 d-flex flex-row justify-content-center" id="heading{{ $m->gameId }}">
@@ -213,5 +229,3 @@
   {{ $match->links() }}
 
   @endsection
-
-  
