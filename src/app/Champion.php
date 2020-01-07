@@ -28,4 +28,9 @@ class Champion extends Model
         return $this->hasMany('App\Match','championId');
     }
 
+    public function mastery()
+    {
+        return $this->hasMany('App\Mastery','championId');
+    }
+
 }

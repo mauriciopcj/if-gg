@@ -11,23 +11,38 @@
 </div><br />
 @endif
 
-<div class="col-12 col-md-6 col-lg-10">
-  <div class="card d-flex flex-row m-2">
+<div class="row row-cols-12">
+
+  <div class="col-12 col-md-6 d-flex flex-row">
+
     <img class="rounded-circle col-4 p-2 align-self-center" src="http://ddragon.leagueoflegends.com/cdn/{{ $version }}/img/profileicon/{{ $summoner->profileIconId }}.png">
+
     <div class="d-flex flex-column justify-content-center col-8 p-2">
+      
       <h5>{{ $summoner->name }}</h5>
       <p>
         Level: {{$summoner->summonerLevel}}<br>
-        <!-- Revision Date:<br>{{ date("d/m/Y H:i:s", ($summoner->revisionDate / 1000) ) }}<br> -->
-        <!-- <td>{{$summoner->puuid}}</td><hr>
-            <td>{{$summoner->idapi}}</td><hr>
-            <td>{{$summoner->accountId}}</td><hr> -->
         </td>
       </p>
+
     </div>
+
   </div>
+
+  <div class="col-12 col-md-6 d-flex flex-row">
+
+    <img class="rounded-circle col-4 p-2 align-self-center" src="http://ddragon.leagueoflegends.com/cdn/{{ $version }}/img/profileicon/{{ $summoner->profileIconId }}.png">
+
+    <img class="rounded-circle col-4 p-2 align-self-center" src="http://ddragon.leagueoflegends.com/cdn/{{ $version }}/img/profileicon/{{ $summoner->profileIconId }}.png">
+
+    <img class="rounded-circle col-4 p-2 align-self-center" src="http://ddragon.leagueoflegends.com/cdn/{{ $version }}/img/profileicon/{{ $summoner->profileIconId }}.png">
+
+  </div>
+
 </div>
+
 <h1 class="text-center my-5">Matchs</h1>
+
 <div class="container">
 
   <div id="accordionMatches" class="accordion row row-cols-12">
