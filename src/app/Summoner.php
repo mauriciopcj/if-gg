@@ -30,4 +30,9 @@ class Summoner extends Model
     {
         return $this->hasMany('App\Participants','summonerId');
     }
+
+    public function mastery()
+    {
+        return $this->hasMany('App\Mastery','summonerId');
+    }
 }
