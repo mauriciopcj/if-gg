@@ -226,6 +226,24 @@
     </div>
 
   </div>
-  {{ $match->links() }}
+  <nav>
+    <ul class="pagination">
+
+      <li class="page-item disabled" aria-disabled="true" aria-label="« Previous">
+        <span class="page-link" aria-hidden="true">‹</span>
+      </li>
+      @for ($i = 1; $i <= $pages; $i++) 
+        @if($i == $page) 
+          <li class="page-item active" aria-current="page"><span class="page-link">{{$i}}</span></li>
+        @endif
+        @if($i != $page)
+          <li class="page-item"><a class="page-link" href="http://localhost:8080/match?page={{$i}}">{{$i}}</a></li>
+        @endif
+      @endfor
+      <li class="page-item">
+        <a class="page-link" href="http://localhost:8080/match?page=2" rel="next" aria-label="Next »">›</a>
+      </li>
+    </ul>
+  </nav>
 
   @endsection
