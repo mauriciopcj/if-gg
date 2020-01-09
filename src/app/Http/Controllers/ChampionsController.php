@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Champion;
+use App\Mastery;
 use App\Services\LolRequestService;
 use Illuminate\Http\Request;
 
@@ -15,13 +16,11 @@ class ChampionsController extends Controller
      */
     public function index()
     {
-        $match = Champion::orderBy('name')->get();
+        $match = Mastery::where('masteries.summonerId', 'LIKE', 't1zgW2FvDn95vE8C5w7HsVysqNUFAYTHzPypzLtZLXs1SA')->join('champions','masteries.championId', '=', 'champions.id')->orderBy('champions.name')->get();
 
         $version = (new LolRequestService(true))->getLastVersion();
 
-        $name = 'Lanolder';
-
-        return view('champions.index', compact(['match', 'version', 'name']));
+        return view('champions.index', compact(['match', 'version']));
 
     }
 

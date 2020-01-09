@@ -17,10 +17,10 @@
     @foreach($match as $m)
 
         <div class="col m-2 d-flex flex-column align-items-center justify-content-center">
-            <img src="{{ $m->img_square }}" data-toggle="tooltip" data-html="true" title="<em>{{ $m->mastery->get(0)['championPoints'] }}</em>">
+            <img src="{{ $m->champion->img_square }}" data-toggle="tooltip" data-html="true" title="<em>{{ $m->championPoints }}</em>">
+            <!-- {{ $m }} -->
+            <img style="max-width:80px;" src="{{ url(''.$m->championLevel.'.png') }}" alt="">
             <h5>{{ $m->name }}</h5>
-            <!-- {{ $m->mastery->get(0)['championLevel'] }} -->
-            <img src="{{ url(''.$m->mastery->get(0)['championLevel'].'.png') }}" alt="">
         </div>
 
     @endforeach
