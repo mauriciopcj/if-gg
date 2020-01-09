@@ -29,13 +29,28 @@
 
   </div>
 
-  <div class="col-12 col-md-6 d-flex flex-row">
+  <div class="col-12 col-md-6 d-flex flex-row row align-items-end">
 
-    <img class="rounded-circle col-4 p-2 align-self-center" src="http://ddragon.leagueoflegends.com/cdn/{{ $version }}/img/profileicon/{{ $summoner->profileIconId }}.png">
+    <div class="col-4 text-center d-flex flex-column align-items-center">
+      <img style="max-width:85px;min-width:85px;height:auto;" class="shadow rounded-circle align-self-center" src="{{ $mastery->get(1)->champion->img_square }}" data-toggle="tooltip" data-html="true" title="<em>{{ $mastery->get(1)->championPoints }}</em>">
+      <!-- {{ $mastery->get(1)->champion->name }}<br> -->
+      <!-- {{ $mastery->get(1)->championPoints }} -->
+      <img style="max-width:60px;bottom:-35px;" class="position-absolute" src="{{ url(''.$mastery->get(1)->championLevel.'.png') }}" alt="">
+    </div>
 
-    <img class="rounded-circle col-4 p-2 align-self-center" src="http://ddragon.leagueoflegends.com/cdn/{{ $version }}/img/profileicon/{{ $summoner->profileIconId }}.png">
+    <div class="col-4 text-center d-flex flex-column align-items-center">
+      <img style="max-width:100px;min-width:100px;height:auto;" class="shadow rounded-circle align-self-center" src="{{ $mastery->get(0)->champion->img_square }}" data-toggle="tooltip" data-html="true" title="<em>{{ $mastery->get(0)->championPoints }}</em>">
+      <!-- {{ $mastery->get(0)->champion->name }}<br> -->
+      <!-- {{ $mastery->get(0)->championPoints }} -->
+      <img style="max-width:60px;bottom:-35px;" class="position-absolute" src="{{ url(''.$mastery->get(1)->championLevel.'.png') }}" alt="">
+    </div>
 
-    <img class="rounded-circle col-4 p-2 align-self-center" src="http://ddragon.leagueoflegends.com/cdn/{{ $version }}/img/profileicon/{{ $summoner->profileIconId }}.png">
+    <div class="col-4 text-center d-flex flex-column align-items-center">
+      <img style="max-width:85px;min-width:85px;height:auto;" class="shadow rounded-circle align-self-center" src="{{ $mastery->get(2)->champion->img_square }}" data-toggle="tooltip" data-html="true" title="<em>{{ $mastery->get(2)->championPoints }}</em>">
+      <!-- {{ $mastery->get(2)->champion->name }}<br> -->
+      <!-- {{ $mastery->get(2)->championPoints }} -->
+      <img style="max-width:60px;bottom:-35px;" class="position-absolute" src="{{ url(''.$mastery->get(1)->championLevel.'.png') }}" alt="">
+    </div>
 
   </div>
 

@@ -19,7 +19,7 @@ class Mastery extends Model
         'tokensEarned',
         'championId',
         'lastPlayTime'
-    ]
+    ];
 
     public function champion()
     {

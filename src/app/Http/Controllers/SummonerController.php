@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 // use App\Match;
 // use App\MatchDetail;
 // use App\Participants;
+use App\Mastery;
 use App\Summoner;
 use Illuminate\Http\Request;
 use App\Services\LolRequestService;
@@ -73,6 +74,28 @@ class SummonerController extends Controller
         $Sum = Summoner::updateOrCreate(['id' => $summoner['id']], $summoner);
         Session::put('summoner', $Sum);
         Session::save();
+
+        // Antes de redirecionar para o MatchsController
+        // povoar a tabela de Mastery do Summoner
+        $lolService = new LolRequestService();
+        $result = $lolService->getMasteryBySummonerId($Sum->id);
+        $responseData = json_decode($result, true);
+
+        foreach($responseData as $mastery)
+        {
+            $masteryChamp = new Mastery;
+            $masteryChamp->championLevel = $mastery['championLevel'];
+            $masteryChamp->chestGranted = $mastery['chestGranted'];
+            $masteryChamp->championPoints = $mastery['championPoints'];
+            $masteryChamp->championPointsSinceLastLevel = $mastery['championPointsSinceLastLevel'];
+            $masteryChamp->championPointsUntilNextLevel = $mastery['championPointsUntilNextLevel'];
+            $masteryChamp->summonerId = $mastery['summonerId'];
+            $masteryChamp->tokensEarned = $mastery['tokensEarned'];
+            $masteryChamp->championId = $mastery['championId'];
+            $masteryChamp->lastPlayTime = $mastery['lastPlayTime'];
+            $masteryChamp->save();
+        }
+
         return redirect('/match');
     }
 

@@ -55,6 +55,12 @@ class LolRequestService
         return file_get_contents("$this->baseUrl/lol/match/v4/matches/$matchId?api_key=$this->apiKey", false, $context);
     }
 
+    public function getMasteryBySummonerId(string $sumId)
+    {
+        $context = stream_context_create($this->opts);
+        return file_get_contents("$this->baseUrl/lol/champion-mastery/v4/champion-masteries/by-summoner/$sumId?api_key=$this->apiKey", false, $context);
+    }
+
     public function getChampions()
     {
         return json_decode(file_get_contents("http://ddragon.leagueoflegends.com/cdn/" . $this->versions[0] . "/data/pt_BR/champion.json"), true);

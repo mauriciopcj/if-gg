@@ -13,7 +13,7 @@ class CreateMasteryTable extends Migration
      */
     public function up()
     {
-        Schema::create('mastery', function (Blueprint $table) {
+        Schema::create('masteries', function (Blueprint $table) {
 
             $table->integer('championLevel');
             $table->boolean('chestGranted');
@@ -30,7 +30,7 @@ class CreateMasteryTable extends Migration
             $table->primary([ 'summonerId', 'championId' ]);
 
             $table->foreign('summonerId')->references('id')->on('summoners')->onDelete('cascade');
-            $table->foreign('championId')->references('id')->on('summoners')->onDelete('cascade');
+            $table->foreign('championId')->references('id')->on('champions')->onDelete('cascade');
 
         });
     }

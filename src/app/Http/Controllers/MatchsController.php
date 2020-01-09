@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Match;
 use App\MatchDetail;
+use App\Mastery;
 use App\Participants;
 use App\Services\LolRequestService;
 use App\Summoner;
@@ -130,7 +131,9 @@ class MatchsController extends Controller
             $version = $lolService->getLastVersion();
             $summoner = $data;
             $page = 1;
-            return view('matchs.index', compact(['match', 'version', 'summoner', 'pages', 'page']));
+            $mastery = Mastery::where('summonerId', 'LIKE', $summoner->id)
+                ->orderBy('championPoints', 'desc')->take(3)->get();
+            return view('matchs.index', compact(['match', 'version', 'summoner', 'pages', 'page', 'mastery']));
         } else if ($data != null && $pageIndex != null) {
             $lolService = new LolRequestService(true);
 
@@ -230,7 +233,9 @@ class MatchsController extends Controller
             $version = $lolService->getLastVersion();
             $summoner = $data;
             $page = $pageIndex;
-            return view('matchs.index', compact(['match', 'version', 'summoner', 'pages', 'page']));
+            $mastery = Mastery::where('summonerId', 'LIKE', $summoner->id)
+                ->orderBy('championPoints', 'desc')->take(3)->get();
+            return view('matchs.index', compact(['match', 'version', 'summoner', 'pages', 'page', 'mastery']));
         }
         return redirect('/');
     }
