@@ -17,6 +17,13 @@ Route::get('/', function () {
 
 Route::resources([
     'summoner' => 'SummonerController',
-    'match' => 'MatchsController',
-    'champion' => 'ChampionsController'
+    'match' => 'MatchsController'
 ]);
+
+Route::middleware(['auth'])->group(function(){
+    Route::resource('champion', 'ChampionController')->only(['index']);
+});
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
