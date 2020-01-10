@@ -26,9 +26,9 @@
 
         <form class="col" action="{{ route('summoner.create') }}" method="GET">
 
-            <div class="input-field col d-flex flex-column justify-content-center">
+            <div class="input-field d-flex flex-column">
 
-                <input name="name" id="name" type="text" class="mb-3" placeholder="Summoner Name">
+                <input name="name" id="name" type="text" class="p-2 mb-3" placeholder="Summoner Name">
 
                 <button type="submit" class="btn btn-dark">Search</button>
 

@@ -21,7 +21,7 @@ Route::resources([
 ]);
 
 Route::middleware(['auth'])->group(function(){
-    Route::resource('champion', 'ChampionController')->only(['index']);
+    Route::resource('champion', 'ChampionsController')->only(['index']);
 });
 
 Auth::routes();
