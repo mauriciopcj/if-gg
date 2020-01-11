@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Session;
 
 class MatchsController extends Controller
 {
-    
+
     public function index()
     {
         $lolService = new LolRequestService(true);
@@ -128,11 +128,12 @@ class MatchsController extends Controller
         $match = Match::where('participants.summonerId', 'LIKE', $data['id'])
             ->join('match_details', 'matches.gameId', '=', 'match_details.gameId')
             ->join('participants', 'participants.match_detail_id', '=', 'match_details.gameId')
-            ->orderBy('gameCreation', 'desc')->skip(($pageIndex - 1 )* 10)->take(10)->get();
+            ->orderBy('gameCreation', 'desc')->skip(($pageIndex - 1) * 10)->take(10)->get();
         $version = $lolService->getLastVersion();
         $summoner = $data;
         $page = $pageIndex;
         $mastery = Mastery::where('summonerId', 'LIKE', $summoner->id)
+            ->orderBy('masteries.championLevel', 'desc')
             ->orderBy('championPoints', 'desc')->take(3)->get();
         return view('matchs.index', compact(['match', 'version', 'summoner', 'pages', 'page', 'mastery']));
     }

@@ -41,7 +41,10 @@ class ChampionsController extends Controller
 
     public function show(string $summonerId)
     {
-        $match = Mastery::where('masteries.summonerId', 'LIKE', ''.$summonerId)->join('champions','masteries.championId', '=', 'champions.id')->orderBy('masteries.championPoints', 'desc')->get();
+        $match = Mastery::where('masteries.summonerId', 'LIKE', ''.$summonerId)
+        ->join('champions','masteries.championId', '=', 'champions.id')
+        ->orderBy('masteries.championLevel', 'desc')
+        ->orderBy('masteries.championPoints', 'desc')->get();
     
         $version = (new LolRequestService(true))->getLastVersion();
 
