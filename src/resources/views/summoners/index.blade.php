@@ -26,8 +26,8 @@ img {
   <div class="row row-cols-12">
   @foreach($summoner as $summ)
     <div class="col-12 col-md-6 col-lg-4">
-      <div class="card d-flex flex-row m-2">
-        <img class="rounded-circle col-4 p-2 align-self-center" src="http://ddragon.leagueoflegends.com/cdn/{{ $version }}/img/profileicon/{{ $summ->profileIconId }}.png" >
+      <div style="border-top-left-radius:80px;border-bottom-left-radius:80px;border-bottom-right-radius:80px;border-top-right-radius:20px;border:3px solid #fff;" class="shadow-sm card d-flex flex-row m-2 bg-dark text-white">
+        <img style="border:3px solid #ffec8f;" class="rounded-circle col-4 p-0 m-2 align-self-center" src="http://ddragon.leagueoflegends.com/cdn/{{ $version }}/img/profileicon/{{ $summ->profileIconId }}.png" >
         <div class="d-flex flex-column justify-content-center col-8 p-2">
           <h5>{{ $summ->name }}</h5>
           <p>

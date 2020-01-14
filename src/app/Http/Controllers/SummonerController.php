@@ -83,17 +83,18 @@ class SummonerController extends Controller
 
         foreach($responseData as $mastery)
         {
-            $masteryChamp = new Mastery;
-            $masteryChamp->championLevel = $mastery['championLevel'];
-            $masteryChamp->chestGranted = $mastery['chestGranted'];
-            $masteryChamp->championPoints = $mastery['championPoints'];
-            $masteryChamp->championPointsSinceLastLevel = $mastery['championPointsSinceLastLevel'];
-            $masteryChamp->championPointsUntilNextLevel = $mastery['championPointsUntilNextLevel'];
-            $masteryChamp->summonerId = $mastery['summonerId'];
-            $masteryChamp->tokensEarned = $mastery['tokensEarned'];
-            $masteryChamp->championId = $mastery['championId'];
-            $masteryChamp->lastPlayTime = $mastery['lastPlayTime'];
-            $masteryChamp->save();
+            $masteryChamp = Mastery::updateOrCreate([
+                'summonerId' => $mastery['summonerId'],
+                'championId' => $mastery['championId']
+            ],[
+                'championLevel' => $mastery['championLevel'],
+                'chestGranted' => $mastery['chestGranted'],
+                'championPoints' => $mastery['championPoints'],
+                'championPointsSinceLastLevel' => $mastery['championPointsSinceLastLevel'],
+                'championPointsUntilNextLevel' => $mastery['championPointsUntilNextLevel'],
+                'tokensEarned' => $mastery['tokensEarned'],
+                'lastPlayTime' => $mastery['lastPlayTime']
+            ]);
         }
 
         return redirect('/match');
@@ -128,9 +129,24 @@ class SummonerController extends Controller
      * @param  \App\Summoner  $summoner
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Summoner $summoner)
+    public function update(string $summoner)
     {
-        //
+        
+        $name = trim(str_replace(' ', '%20', $_GET['name']));
+
+        $result = $lolService->getSummonerByName($name);
+
+        $responseData = json_decode($result, true);
+        $dadosCorretos = array(
+            'id' => $responseData['id'],
+            'name' => trim($responseData['name']),
+            'puuid' => $responseData['puuid'],
+            'summonerLevel' => $responseData['summonerLevel'],
+            'revisionDate' => $responseData['revisionDate'],
+            'accountId' => $responseData['accountId'],
+            'profileIconId' => $responseData['profileIconId']
+        );
+        return $this->store($dadosCorretos);
     }
 
     /**

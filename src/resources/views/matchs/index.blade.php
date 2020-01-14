@@ -13,19 +13,26 @@
 
 <div class="row row-cols-12">
 
-  <div class="col-12 col-md-6 d-flex flex-row">
+  <div class="col-12 col-md-6 d-flex flex-row pb-5">
 
     <img class="rounded-circle col-4 p-2 align-self-center" src="http://ddragon.leagueoflegends.com/cdn/{{ $version }}/img/profileicon/{{ $summoner->profileIconId }}.png">
+    
 
     <div class="d-flex flex-column justify-content-center col-8 p-2">
       
-      <h5>{{ $summoner->name }}</h5>
-      <p>
-        Level: {{$summoner->summonerLevel}}<br>
-        </td>
-      </p>
-
+      <div class="pb-2">
+        <h5>{{ $summoner->name }}</h5>
+        <span class="card px-2">Level: {{$summoner->summonerLevel}}</span>
+        
+      </div>
+      <div class="col-md-8 d-flex flex-column justify-content-center">
+        <a href="{{ route('summoner.update', ['name' => $summoner->name]) }}" class="btn btn-dark">
+          Atualizar
+        </a>
+        <span style="font-size:8pt;">Última atualização: {{ $summoner->updated_at }}</span>
+      </div>
     </div>
+
 
   </div>
 
