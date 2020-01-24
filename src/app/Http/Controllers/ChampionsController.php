@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Session;
 
 class ChampionsController extends Controller
 {
-    
+
     public function index()
     {
         $data = null;
@@ -20,9 +20,9 @@ class ChampionsController extends Controller
         if ($data != null) {
 
             $match = Mastery::where('masteries.summonerId', 'LIKE', $data['id'])->join('champions','masteries.championId', '=', 'champions.id')->orderBy('champions.name')->get();
-    
+
             $version = (new LolRequestService(true))->getLastVersion();
-    
+
             return view('champions.index', compact(['match', 'version']));
         }
         return redirect('/');
@@ -32,6 +32,11 @@ class ChampionsController extends Controller
     public function create()
     {
         //
+        return view('posts.create', [
+            'route' => route('posts.store'),
+            'model' => Post::class,
+            'action' => 'create'
+        ])->render();
     }
 
     public function store(Request $request)
@@ -45,7 +50,7 @@ class ChampionsController extends Controller
         ->join('champions','masteries.championId', '=', 'champions.id')
         ->orderBy('masteries.championLevel', 'desc')
         ->orderBy('masteries.championPoints', 'desc')->get();
-    
+
         $version = (new LolRequestService(true))->getLastVersion();
 
         return view('champions.index', compact(['match', 'version']));

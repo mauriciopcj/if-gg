@@ -14,7 +14,7 @@
 
 <div class="d-flex flex-column justify-content-center align-items-center my-4">
     <div>
-        Order By: 
+        Order By:
     </div>
     <div class="d-flex justify-content-center">
         <a class="btn btn-dark m-2" href="{{ route('champion.index') }}">Name</a>
@@ -32,12 +32,15 @@
             <div class="d-flex flex-column align-items-center">
                 <img class="position-absolute" style="z-index:-1;bottom:22px;" src="{{ url('masterySquare/'.$m->championLevel.'.png') }}" alt="">
                 <h5>{{ $m->name }}</h5>
-                
+
             </div>
+            <a href="{{ route('champion.create') }}" class="btn btn-default show_modal_form">More Info...</a>
         </div>
 
     @endforeach
 
 </div>
+
+@include('modal::container')
 
 @endsection
