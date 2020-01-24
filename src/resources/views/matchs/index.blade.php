@@ -26,9 +26,12 @@
         
       </div>
       <div class="col-md-8 d-flex flex-column justify-content-center">
-        <a href="{{ route('summoner.update', ['name' => $summoner->name]) }}" class="btn btn-dark">
-          Atualizar
-        </a>
+        <form method="post" action="{{ route( 'summoner.update', $summoner->id ) }}">
+          @csrf
+          @method('PUT')
+          <input type="hidden" name="update" value="{{ $summoner->name }}">
+          <button class="btn btn-dark" type="submit">Atualizar</button>
+        </form>
         <span style="font-size:8pt;">Última atualização: {{ $summoner->updated_at }}</span>
       </div>
     </div>
@@ -49,14 +52,14 @@
       <img class="shadow rounded-circle align-self-center" src="{{ $mastery->get(0)->champion->img_square }}" data-toggle="tooltip" data-html="true" title="<em>{{ $mastery->get(0)->championPoints }}</em>">
       <!-- {{ $mastery->get(0)->champion->name }}<br> -->
       <!-- {{ $mastery->get(0)->championPoints }} -->
-      <img style="max-width:60px;bottom:-35px;" class="" src="{{ url(''.$mastery->get(1)->championLevel.'.png') }}" alt="">
+      <img style="max-width:60px;bottom:-35px;" class="" src="{{ url(''.$mastery->get(0)->championLevel.'.png') }}" alt="">
     </div>
 
     <div class="col-4 text-center d-flex flex-column align-items-center">
       <img class="shadow rounded-circle align-self-center" src="{{ $mastery->get(2)->champion->img_square }}" data-toggle="tooltip" data-html="true" title="<em>{{ $mastery->get(2)->championPoints }}</em>">
       <!-- {{ $mastery->get(2)->champion->name }}<br> -->
       <!-- {{ $mastery->get(2)->championPoints }} -->
-      <img style="max-width:60px;bottom:-35px;" class="" src="{{ url(''.$mastery->get(1)->championLevel.'.png') }}" alt="">
+      <img style="max-width:60px;bottom:-35px;" class="" src="{{ url(''.$mastery->get(2)->championLevel.'.png') }}" alt="">
     </div>
 
   </div>

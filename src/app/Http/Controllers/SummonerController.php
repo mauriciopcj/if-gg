@@ -83,6 +83,18 @@ class SummonerController extends Controller
 
         foreach($responseData as $mastery)
         {
+            // $mastery = array(
+            //     'summonerId' => $mastery['summonerId'],
+            //     'championId' => $mastery['championId'],
+            //     'championLevel' => $mastery['championLevel'],
+            //     'chestGranted' => $mastery['chestGranted'],
+            //     'championPoints' => $mastery['championPoints'],
+            //     'championPointsSinceLastLevel' => $mastery['championPointsSinceLastLevel'],
+            //     'championPointsUntilNextLevel' => $mastery['championPointsUntilNextLevel'],
+            //     'tokensEarned' => $mastery['tokensEarned'],
+            //     'lastPlayTime' => $mastery['lastPlayTime']
+            // );
+
             $masteryChamp = Mastery::updateOrCreate([
                 'summonerId' => $mastery['summonerId'],
                 'championId' => $mastery['championId']
@@ -129,11 +141,12 @@ class SummonerController extends Controller
      * @param  \App\Summoner  $summoner
      * @return \Illuminate\Http\Response
      */
-    public function update(string $summoner)
+    public function update(Request $summoner)
     {
         
-        $name = trim(str_replace(' ', '%20', $_GET['name']));
+        $name = trim(str_replace(' ', '%20', $summoner['update']));
 
+        $lolService = new LolRequestService();
         $result = $lolService->getSummonerByName($name);
 
         $responseData = json_decode($result, true);
